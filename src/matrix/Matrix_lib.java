@@ -1,9 +1,11 @@
 package matrix;
 
-import java.util.Arrays;
+//import java.util.Arrays;
+
 
 public class Matrix_lib {
 	
+
 	public double [][] getProduct(double a[][], double b[][]){
 		double answer[][] = new double[a.length][b[0].length];
 		double t[][] = this.getTranspose(b);
@@ -59,6 +61,19 @@ public class Matrix_lib {
 		return answer;
 	}
 	
+	public double [] getSolution(double a[][],double b[]){
+		double solution[] = new double [a.length];
+		double tmp[][] = this.getInverse(a);
+		for(int i = 0;i < a.length;i++) {
+			for(int j = 0;j < a.length;j++) {
+				solution[i] += tmp[i][j] * b[j];
+			}
+		}
+		return solution;
+	}
+
+
+	
 	public double getCofactor(double [][] a) {
 		double cofactor = 0;
 		if(a.length == 2) {
@@ -80,7 +95,7 @@ public class Matrix_lib {
 					p++;
 					q = 0;
 				}
-			System.out.println("tmp["+i+"] = " + Arrays.deepToString(tmp));
+			//System.out.println("tmp["+i+"] = " + Arrays.deepToString(tmp));
 			cofactor += a[i][index]*Math.pow(-1, (i + 1)+(index + 1))*this.getCofactor(tmp);	
 			}
 			
